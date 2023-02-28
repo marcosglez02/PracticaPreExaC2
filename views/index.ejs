@@ -2,13 +2,13 @@
 <html lang="en">
     <%-include('partials/encabezado.html');%>
 <body>
-    <form action="post">
+    <form action="/" method="post">
         <div class="row mt-2 mb-3 justify-content-md-center">
             <div class="col-3 text-center align-self-center">
                 <label for="" class="form-label">Número del boleto</label>
             </div>
             <div class="col-4">
-                <input class="form-control" type="number" id="boleto" required>
+                <input class="form-control" type="number" id="boleto" name="boleto" required>
             </div>
         </div>
         <div class="row mb-3 justify-content-md-center">
@@ -16,7 +16,7 @@
                 <label for="" class="form-label">Destino</label>
             </div>
             <div class="col-4">
-                <input class="form-control" type="text" id="destino" required>
+                <input class="form-control" type="text" id="destino" name="destino" required>
             </div>
         </div>
         <div class="row mb-3 justify-content-md-center">
@@ -24,7 +24,7 @@
                 <label for="" class="form-label">Nombre del cliente</label>
             </div>
             <div class="col-4">
-                <input class="form-control" type="text" id="nombreCliente" required>
+                <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" required>
             </div>
         </div>
         <div class="row mb-3 justify-content-md-center">
@@ -32,7 +32,7 @@
                 <label for="" class="form-label">Años cumplidos</label>
             </div>
             <div class="col-4">
-                <input class="form-control" type="number" id="años" required>
+                <input class="form-control" type="number" id="años" name="años" required value="<%=años%>">
             </div>
         </div>
         <div class="row mb-3 justify-content-md-center">
@@ -40,7 +40,7 @@
                 <label for="" class="form-label">Tipo de viaje</label>
             </div>
             <div class="col-4">
-                <select class="form-select" id="tipoViaje">
+                <select class="form-select" id="tipoViaje" name="tipoViaje">
                     <option value="1">Sencillo</option>
                     <option value="2">Doble</option>
                 </select>
@@ -53,7 +53,7 @@
             <div class="col-4">
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="number" class="form-control" required id="precio">
+                    <input type="number" class="form-control" required id="precio" name="precio" value="<%=precio%>">
                   </div>
             </div>
         </div>
@@ -66,6 +66,61 @@
             </div>
         </div>
     </form>
+    <% 
+        let subtotal = 0;
+        let iva = 0;
+        let descuento = 0;
+        let tot = 0;
+        if (precio!=null) {
+            if(tipoViaje==1){
+                subtotal = parseInt(precio);
+            }else if(tipoViaje==2){
+                subtotal = parseInt(precio) + (parseInt(precio)*0.8);
+            }
+        iva = subtotal*0.16;
+            if(años>=60){
+                descuento = subtotal*0.5;
+            }
+        tot = (subtotal + iva) - descuento;
+        }
+    %>
+    <div class="row mb-3 text-center justify-content-md-center">
+        <div class="col-3"></div>
+        <h3>Resumen</h3>
+    </div>
+    <div class="row mb-3 text-center justify-content-md-center">
+        <div class="col-3">
+            <label class="form-label" for="">Subtototal</label>
+        </div>
+        <div class="col-4">
+            <input type="text" name="" id="" disabled value="<%= subtotal %>">
+        </div>
+    </div>
+    <div class="row mb-3 text-center justify-content-md-center">
+        <div class="col-3">
+            <label class="form-label" for="">Impuesto</label>
+        </div>
+        <div class="col-4">
+            <input type="text" name="" id="" disabled value="<%= iva %>">
+        </div>
+    </div>
+    <div class="row mb-3 text-center justify-content-md-center">
+        <div class="col-3">
+            <label class="form-label" for="">Descuento</label>
+        </div>
+        <div class="col-4">
+            <input type="text" name="" id="" disabled value="<%= descuento %>">
+        </div>
+    </div>
+    <div class="row mb-3 text-center justify-content-md-center">
+        <div class="col-3">
+            <label class="form-label" for="">Total</label>
+        </div>
+        <div class="col-4">
+            <input type="text" name="" id="" disabled value="<%= tot %>">
+        </div>
+    </div>
+
     <%-include('partials/piePagina.html');%>
 </body>
 </html>
