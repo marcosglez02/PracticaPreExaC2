@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('partials/encabezado.html');%>
+<body>
+    <form action="post">
+        <div class="row mt-2 mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Número del boleto</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="number" id="boleto" required>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Destino</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="text" id="destino" required>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Nombre del cliente</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="text" id="nombreCliente" required>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Años cumplidos</label>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="number" id="años" required>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Tipo de viaje</label>
+            </div>
+            <div class="col-4">
+                <select class="form-select" id="tipoViaje">
+                    <option value="1">Sencillo</option>
+                    <option value="2">Doble</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-3 text-center align-self-center">
+                <label for="" class="form-label">Precio</label>
+            </div>
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" required id="precio">
+                  </div>
+            </div>
+        </div>
+        <div class="row text-center justify-content-md-center">
+            <div class="col-3 d-grid gap-2">
+                <button class="btn btn-outline-success fs-5" type="submit">Calcular</button>
+            </div>
+            <div class="col-3 d-grid gap-2">
+                <button class="btn btn-outline-danger fs-5" type="reset" id="reset">Limpiar</button>
+            </div>
+        </div>
+    </form>
+    <%-include('partials/piePagina.html');%>
+</body>
+</html>
