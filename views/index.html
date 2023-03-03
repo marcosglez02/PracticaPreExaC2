@@ -79,7 +79,7 @@
             }
         iva = subtotal*0.16;
             if(años>=60){
-                descuento = subtotal*0.5;
+                descuento = (subtotal+iva)*0.5;
             }
         tot = (subtotal + iva) - descuento;
     %>
